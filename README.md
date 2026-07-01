@@ -1,4 +1,4 @@
-# NeuroFlow - Cognitive Assessment & Training Assistant
+# NeuroFlow - Cognitive Assessment & Training Assistant (run now from google cloud run 'https://neuroflow-623422049137.us-west1.run.app/')
 
 NeuroFlow is a premium, web-based verbal fluency practice and cognitive assessment application built using **React**, **TypeScript**, **Vite**, and styled with **Tailwind CSS**. It evaluates a user's verbal search and lexical retrieval capabilities by having them name as many animals as possible starting with a designated letter in a given time.
 

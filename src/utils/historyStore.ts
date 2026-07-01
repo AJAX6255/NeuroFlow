@@ -94,3 +94,73 @@ export const getHistorySummary = (): ProgressSummary => {
     byLetter: formattedByLetter
   };
 };
+
+export const exportHistoryToCSV = (): void => {
+  const history = getHistory();
+  if (history.length === 0) {
+    alert("No test history available to export.");
+    return;
+  }
+
+  // Define headers
+  const headers = [
+    'Timestamp',
+    'Patient ID',
+    'Letter',
+    'Duration (s)',
+    'Fluency Score (Valid)',
+    'Lexical Rarity Score',
+    'Average IWI (s)',
+    'Latency Spikes (>4s)',
+    'Semantic Switches',
+    'Phonetic Switches',
+    'Unrelated Switches',
+    'Total Words Spoken',
+    'All Spoken Words'
+  ];
+
+  const rows = history.map(item => {
+    const escapeCsv = (str: string) => `"${str.replace(/"/g, '""')}"`;
+    
+    // Count latency spikes
+    const spikes = item.wordTimestamps?.filter(t => t.isLatencySpike).length || 0;
+    const totalWords = item.wordTimestamps?.length || 0;
+    const wordsList = item.wordTimestamps?.map(t => `${t.word} (${t.time}s)`).join(', ') || '';
+
+    // Calculate transition counts on the fly
+    const semCount = item.switchClassifications?.filter(s => s.type === 'semantic').length || 0;
+    const phonCount = item.switchClassifications?.filter(s => s.type === 'phonological').length || 0;
+    const unrelCount = item.switchClassifications?.filter(s => s.type === 'unrelated').length || 0;
+
+    return [
+      escapeCsv(new Date(item.timestamp).toLocaleString()),
+      escapeCsv(item.patientId || 'Patient-1'),
+      escapeCsv(item.letter),
+      item.testDuration || 30,
+      item.score,
+      item.lexicalRarityScore || 'N/A',
+      item.averageIwi || 'N/A',
+      spikes,
+      semCount,
+      phonCount,
+      unrelCount,
+      totalWords,
+      escapeCsv(wordsList)
+    ];
+  });
+
+  const csvContent = [
+    headers.join(','),
+    ...rows.map(r => r.join(','))
+  ].join('\n');
+
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.setAttribute('href', url);
+  link.setAttribute('download', `neuroflow_clinical_history_${new Date().toISOString().slice(0,10)}.csv`);
+  link.style.visibility = 'hidden';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};

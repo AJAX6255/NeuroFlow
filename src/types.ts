@@ -1,7 +1,10 @@
 export const TestStatus = {
+  WELCOME: 'WELCOME',
+  MIC_REQUEST: 'MIC_REQUEST',
   IDLE: 'IDLE',
   LISTENING: 'LISTENING',
   PROCESSING: 'PROCESSING',
+  TRANSITION: 'TRANSITION',
   FINISHED: 'FINISHED',
   ERROR: 'ERROR'
 } as const;
@@ -26,10 +29,24 @@ export interface CognitiveMetrics {
   errors: CognitiveError[];
 }
 
+export interface WordTimestamp {
+  word: string;
+  time: number; // seconds from start
+  iwi: number;  // interval from previous word in seconds
+  isLatencySpike: boolean;
+}
+
 export interface TestResult extends CognitiveMetrics {
   message: string;
   timestamp: string;
   letter: string;
+  patientId?: string;
+  testDuration?: number;
+  wordTimestamps?: WordTimestamp[];
+  epochCounts?: number[];      // [first-third, mid-third, last-third]
+  averageIwi?: number;         // average seconds between words
+  lexicalRarityScore?: number; // 1-5 scale from Gemini
+  switchClassifications?: { from: string; to: string; type: 'semantic' | 'phonological' | 'unrelated' }[];
 }
 
 // --- WEB SPEECH API TYPES for TypeScript ---
@@ -69,6 +86,7 @@ export interface SpeechRecognition {
   lang: string;
   onresult: ((this: SpeechRecognition, ev: SpeechRecognitionEvent) => any) | null;
   onerror: ((this: SpeechRecognition, ev: SpeechRecognitionErrorEvent) => any) | null;
+  onstart: (() => any) | null;
   onend: (() => any) | null;
   start: () => void;
   stop: () => void;

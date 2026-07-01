@@ -1,12 +1,12 @@
 // Curated dictionary of common animals starting with target letters
-const ANIMAL_DICTIONARY: Record<string, string[]> = {
-  L: ['lion', 'leopard', 'llama', 'lizard', 'lamb', 'lobster', 'lemur', 'lynx', 'locust', 'leech', 'lark', 'loon', 'leopard seal', 'ladybug', 'llama'],
-  S: ['snake', 'sheep', 'shark', 'spider', 'snail', 'squirrel', 'swan', 'seal', 'skunk', 'swallow', 'salmon', 'sparrow', 'starling', 'sloth', 'scorpion', 'seagull'],
-  B: ['bear', 'beaver', 'badger', 'bat', 'bee', 'buffalo', 'bull', 'butterfly', 'baboon', 'beetle', 'bison', 'boar', 'bobcat', 'budgie', 'baboon', 'barracuda'],
-  C: ['cat', 'cow', 'cheetah', 'camel', 'chimpanzee', 'crab', 'caterpillar', 'chicken', 'crow', 'cobra', 'crane', 'crocodile', 'coyote', 'chinchilla', 'cheetah', 'chimpanzee'],
-  M: ['monkey', 'mouse', 'mole', 'moose', 'manatee', 'magpie', 'moth', 'mosquito', 'mule', 'marmot', 'mink', 'meerkat', 'macaque', 'mockingbird', 'mammoth'],
-  T: ['tiger', 'turtle', 'toad', 'turkey', 'trout', 'tarantula', 'tapir', 'toucan', 'termite', 'thrush', 'tortoise', 'tadpole', 'tarantula'],
-  W: ['wolf', 'whale', 'walrus', 'wasp', 'weasel', 'worm', 'woodpecker', 'wombat', 'wildebeest', 'wallaby', 'warthog', 'walrus']
+export const ANIMAL_DICTIONARY: Record<string, string[]> = {
+  L: ['lion', 'leopard', 'llama', 'lizard', 'lamb', 'lobster', 'lemur', 'lynx', 'locust', 'leech', 'lark', 'loon', 'leopard seal', 'ladybug', 'leopard gecko', 'leopard frog', 'lyre bird', 'lion fish', 'leatherback turtle', 'lake trout'],
+  S: ['snake', 'sheep', 'shark', 'spider', 'snail', 'squirrel', 'swan', 'seal', 'skunk', 'swallow', 'salmon', 'sparrow', 'starling', 'sloth', 'scorpion', 'seagull', 'sea lion', 'sea turtle', 'sea horse', 'spider monkey', 'sand crab', 'sand dab', 'sand dollar', 'snow leopard', 'snowy owl', 'snapping turtle', 'sperm whale', 'sword fish', 'spiny lobster', 'sheep dog'],
+  B: ['bear', 'beaver', 'badger', 'bat', 'bee', 'buffalo', 'bull', 'butterfly', 'baboon', 'beetle', 'bison', 'boar', 'bobcat', 'budgie', 'barracuda', 'black bear', 'brown bear', 'blue whale', 'bald eagle', 'bull frog', 'barn owl', 'bumble bee', 'basking shark', 'blue jay'],
+  C: ['cat', 'cow', 'cheetah', 'camel', 'chimpanzee', 'crab', 'caterpillar', 'chicken', 'crow', 'cobra', 'crane', 'crocodile', 'coyote', 'chinchilla', 'clown fish', 'cray fish', 'cape buffalo', 'canada goose'],
+  M: ['monkey', 'mouse', 'mole', 'moose', 'manatee', 'magpie', 'moth', 'mosquito', 'mule', 'marmot', 'mink', 'meerkat', 'macaque', 'mockingbird', 'mountain lion', 'mocking bird', 'monarch butterfly', 'mule deer', 'marine iguana'],
+  T: ['tiger', 'turtle', 'toad', 'turkey', 'trout', 'tarantula', 'tapir', 'toucan', 'termite', 'thrush', 'tortoise', 'tadpole', 'tiger shark', 'tree frog', 'tiger salamander', 'tsetse fly', 'turkey vulture', 'thorny devil'],
+  W: ['wolf', 'whale', 'walrus', 'wasp', 'weasel', 'worm', 'woodpecker', 'wombat', 'wildebeest', 'wallaby', 'warthog', 'white tiger', 'white shark', 'wood frog', 'wild boar', 'wild cat']
 };
 
 // Map of common spoken homophones or speech-to-text misinterpretations
